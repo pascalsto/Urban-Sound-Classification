@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# 1) Stelle sicher, dass das soundata-CLI verfügbar ist
-if ! command -v soundata &> /dev/null; then
-  echo "soundata CLI nicht gefunden. Installiere via pip..."
-  pip install soundata
-fi
+# 1) Python-Package installieren (im aktiven Environment)
+echo "Stelle sicher, dass soundata installiert ist…"
+python3 -m pip install --upgrade soundata
 
 # 2) Zielordner anlegen
-DATA_DIR="data"
-mkdir -p "${DATA_DIR}"
+DATA_HOME="data"
+mkdir -p "${DATA_HOME}"
 
-# 3) Dataset per soundata-CLI herunterladen
-echo "Lade UrbanSound8K mit soundata CLI herunter..."
-soundata download urban_sound_8k --data-home "${DATA_DIR}"
+# 3) Dataset herunterladen mit Python-API
+echo "Lade UrbanSound8K per Python-API herunter…"
+python3 - <<EOF
+import os
+import soundata
 
-echo "Fertig! Die Daten stehen jetzt in ${DATA_DIR}/urban_sound_8k"
+# Lege data-home fest
+data_home = os.path.abspath("data")
+# Initialisiere den Loader für UrbanSound8K
+dataset = soundata.initialize("urbansound8k", data_home=data_home)
+# Lade (und entpacke) die Audiodaten
+dataset.download()
+print(f"UrbanSound8K wurde in {data_home}/urban_sound_8k abgelegt.")
+EOF
+
+echo "Fertig!"

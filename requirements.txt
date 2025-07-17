@@ -9,3 +9,6 @@ ipython==7.34.0
 matplotlib==3.7.1        # 3.10.0 nicht verfügbar
 soundfile==0.13.1
 soundata==1.0.1
+
+# Kompatibilität für TF2
+typing-extensions<4.6.0,>=3.6.6

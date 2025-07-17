@@ -1,177 +1,335 @@
-name: urban-sound-py38
+name: urban-sound-py310
 channels:
   - conda-forge
   - defaults
 dependencies:
-  - absl-py=2.1.0
-  - aiohappyeyeballs=2.4.3
-  - aiohttp=3.10.5
-  - aiosignal=1.3.1
+  - absl-py=2.3.1
+  - aiohappyeyeballs=2.6.1
+  - aiohttp=3.12.14
+  - aiosignal=1.4.0
+  - anyio=4.9.0
+  - aom=3.7.1
+  - appnope=0.1.4
+  - argon2-cffi=25.1.0
+  - argon2-cffi-bindings=21.2.0
+  - arrow=1.3.0
+  - asttokens=3.0.0
   - astunparse=1.6.3
-  - async-timeout=4.0.3
-  - blinker=1.8.2
+  - async-lru=2.0.5
+  - async-timeout=5.0.1
+  - attrs=25.3.0
+  - audioread=3.0.1
+  - babel=2.17.0
+  - beautifulsoup4=4.13.4
+  - bleach=6.2.0
+  - bleach-with-css=6.2.0
+  - blinker=1.9.0
+  - brotli=1.1.0
+  - brotli-bin=1.1.0
   - brotli-python=1.1.0
   - bzip2=1.0.8
   - c-ares=1.34.5
   - ca-certificates=2025.7.14
   - cached-property=1.5.2
   - cached_property=1.5.2
-  - cachetools=5.5.0
-  - click=8.1.7
-  - cryptography=43.0.0
+  - cachetools=5.5.2
+  - cairo=1.18.0
+  - certifi=2025.7.14
+  - cffi=1.17.1
+  - charset-normalizer=3.4.2
+  - click=8.2.1
+  - colorama=0.4.6
+  - comm=0.2.2
+  - contourpy=1.3.2
+  - cryptography=45.0.5
+  - cycler=0.12.1
+  - dav1d=1.2.1
+  - debugpy=1.8.14
+  - decorator=5.2.1
+  - defusedxml=0.7.1
+  - exceptiongroup=1.2.2
+  - executing=2.2.0
+  - ffmpeg=6.1.1
   - flatbuffers=23.5.26
-  - frozenlist=1.4.1
-  - gast=0.5.5
+  - font-ttf-dejavu-sans-mono=2.37
+  - font-ttf-inconsolata=3.000
+  - font-ttf-source-code-pro=2.038
+  - font-ttf-ubuntu=0.83
+  - fontconfig=2.15.0
+  - fonts-conda-ecosystem=1
+  - fonts-conda-forge=1
+  - fonttools=4.59.0
+  - fqdn=1.5.1
+  - freetype=2.13.3
+  - fribidi=1.0.10
+  - frozenlist=1.7.0
+  - gast=0.6.0
+  - gettext=0.25.1
+  - gettext-tools=0.25.1
   - giflib=5.2.2
-  - google-auth=2.35.0
+  - gmp=6.3.0
+  - gnutls=3.7.9
+  - google-auth=2.40.3
   - google-auth-oauthlib=1.0.0
   - google-pasta=0.2.0
+  - graphite2=1.3.14
   - grpcio=1.54.3
-  - h2=4.1.0
-  - h5py=3.11.0
-  - hdf5=1.14.3
-  - hpack=4.0.0
-  - hyperframe=6.0.1
+  - h11=0.16.0
+  - h2=4.2.0
+  - h5py=3.14.0
+  - harfbuzz=9.0.0
+  - hdf5=1.14.6
+  - hpack=4.1.0
+  - httpcore=1.0.9
+  - httpx=0.28.1
+  - hyperframe=6.1.0
   - icu=73.2
   - idna=3.10
-  - importlib-metadata=8.5.0
+  - importlib-metadata=8.7.0
+  - importlib_resources=6.5.2
+  - ipykernel=6.29.5
+  - isoduration=20.11.0
+  - jedi=0.19.2
+  - jinja2=3.1.6
+  - joblib=1.5.1
+  - json5=0.12.0
+  - jsonpointer=3.0.0
+  - jsonschema=4.24.0
+  - jsonschema-specifications=2025.4.1
+  - jsonschema-with-format-nongpl=4.24.0
+  - jupyter-lsp=2.2.5
+  - jupyter_client=8.6.3
+  - jupyter_core=5.8.1
+  - jupyter_events=0.12.0
+  - jupyter_server=2.16.0
+  - jupyter_server_terminals=0.5.3
+  - jupyterlab=4.4.4
+  - jupyterlab_pygments=0.3.0
+  - jupyterlab_server=2.27.3
   - keras=2.13.1
+  - kiwisolver=1.4.8
   - krb5=1.21.3
+  - lame=3.100
+  - lazy-loader=0.4
+  - lazy_loader=0.4
+  - lcms2=2.17
+  - lerc=4.0.0
   - libabseil=20230125.3
   - libaec=1.1.4
+  - libasprintf=0.25.1
+  - libasprintf-devel=0.25.1
+  - libass=0.17.1
   - libblas=3.9.0
+  - libbrotlicommon=1.1.0
+  - libbrotlidec=1.1.0
+  - libbrotlienc=1.1.0
   - libcblas=3.9.0
   - libcurl=8.14.1
   - libcxx=20.1.8
+  - libdeflate=1.24
   - libedit=3.1.20250104
   - libev=4.33
+  - libexpat=2.7.1
   - libffi=3.4.6
+  - libflac=1.4.3
+  - libfreetype=2.13.3
+  - libfreetype6=2.13.3
+  - libgettextpo=0.25.1
+  - libgettextpo-devel=0.25.1
   - libgfortran=5.0.0
   - libgfortran5=14.2.0
+  - libglib=2.84.2
   - libgrpc=1.54.3
+  - libhwloc=2.11.2
+  - libiconv=1.18
+  - libidn2=2.3.8
+  - libintl=0.25.1
+  - libintl-devel=0.25.1
   - libjpeg-turbo=3.1.0
   - liblapack=3.9.0
   - liblzma=5.8.1
   - liblzma-devel=5.8.1
   - libnghttp2=1.64.0
+  - libogg=1.3.5
   - libopenblas=0.3.30
+  - libopenvino=2023.2.0
+  - libopenvino-arm-cpu-plugin=2023.2.0
+  - libopenvino-auto-batch-plugin=2023.2.0
+  - libopenvino-auto-plugin=2023.2.0
+  - libopenvino-hetero-plugin=2023.2.0
+  - libopenvino-ir-frontend=2023.2.0
+  - libopenvino-onnx-frontend=2023.2.0
+  - libopenvino-paddle-frontend=2023.2.0
+  - libopenvino-pytorch-frontend=2023.2.0
+  - libopenvino-tensorflow-frontend=2023.2.0
+  - libopenvino-tensorflow-lite-frontend=2023.2.0
+  - libopus=1.5.2
   - libpng=1.6.50
   - libprotobuf=3.21.12
+  - librosa=0.11.0
+  - libsndfile=1.2.2
+  - libsodium=1.0.20
   - libsqlite=3.50.2
   - libssh2=1.11.1
+  - libtasn1=4.20.0
+  - libtiff=4.7.0
+  - libunistring=0.9.10
+  - libvorbis=1.3.7
+  - libvpx=1.13.1
+  - libwebp-base=1.6.0
+  - libxcb=1.17.0
+  - libxml2=2.12.7
   - libzlib=1.3.1
   - llvm-openmp=20.1.8
-  - markdown=3.6
-  - markupsafe=2.1.5
-  - multidict=6.0.5
+  - llvmlite=0.44.0
+  - markdown=3.8.2
+  - markupsafe=3.0.2
+  - matplotlib=3.7.1
+  - matplotlib-base=3.7.1
+  - matplotlib-inline=0.1.7
+  - mistune=3.1.3
+  - mpg123=1.32.9
+  - msgpack-python=1.1.1
+  - multidict=6.6.3
+  - munkres=1.1.4
+  - nbclient=0.10.2
+  - nbconvert-core=7.16.6
+  - nbformat=5.10.4
   - ncurses=6.5
+  - nest-asyncio=1.6.0
+  - nettle=3.9.1
+  - notebook-shim=0.2.4
+  - numba=0.61.2
   - numpy=1.24.4
-  - oauthlib=3.2.2
+  - oauthlib=3.3.1
+  - openh264=2.4.0
+  - openjpeg=2.5.3
   - openssl=3.5.1
   - opt_einsum=3.4.0
+  - overrides=7.7.0
+  - p11-kit=0.24.1
   - packaging=25.0
+  - pandas=1.5.3
+  - pandocfilters=1.5.0
+  - parso=0.8.4
+  - pcre2=10.45
+  - pexpect=4.9.0
+  - pickleshare=0.7.5
+  - pillow=11.3.0
+  - pip=25.1.1
+  - pixman=0.46.2
+  - pkgutil-resolve-name=1.3.10
+  - platformdirs=4.3.8
+  - pooch=1.8.2
+  - prometheus_client=0.22.1
+  - prompt-toolkit=3.0.51
+  - propcache=0.3.1
   - protobuf=4.21.12
+  - psutil=7.0.0
+  - pthread-stubs=0.4
+  - ptyprocess=0.7.0
+  - pugixml=1.14
+  - pure_eval=0.2.3
   - pyasn1=0.6.1
-  - pyasn1-modules=0.4.1
+  - pyasn1-modules=0.4.2
   - pycparser=2.22
-  - pyjwt=2.9.0
-  - pyopenssl=24.2.1
+  - pygments=2.19.2
+  - pyjwt=2.10.1
+  - pyobjc-core=11.1
+  - pyobjc-framework-cocoa=11.1
+  - pyopenssl=22.0.0
+  - pyparsing=3.2.3
   - pysocks=1.7.1
-  - python=3.8.20
-  - python-flatbuffers=24.3.25
-  - python_abi=3.8
+  - pysoundfile=0.13.1
+  - python=3.10.18
+  - python-dateutil=2.9.0.post0
+  - python-fastjsonschema=2.21.1
+  - python-flatbuffers=25.2.10
+  - python-json-logger=2.0.7
+  - python_abi=3.10
+  - pytz=2025.2
   - pyu2f=0.1.5
+  - pyyaml=6.0.2
+  - pyzmq=27.0.0
   - re2=2023.03.02
   - readline=8.2
+  - referencing=0.36.2
+  - requests=2.32.4
   - requests-oauthlib=2.0.0
-  - rsa=4.9
-  - setuptools=75.3.0
+  - rfc3339-validator=0.1.4
+  - rfc3986-validator=0.1.1
+  - rpds-py=0.26.0
+  - rsa=4.9.1
+  - scikit-learn=1.2.2
+  - scipy=1.15.2
+  - send2trash=1.8.3
+  - setuptools=80.9.0
+  - six=1.17.0
   - snappy=1.1.10
+  - sniffio=1.3.1
+  - soupsieve=2.7
+  - soxr=0.1.3
+  - soxr-python=0.5.0.post1
+  - stack_data=0.6.3
+  - standard-aifc=3.13.0
+  - standard-sunau=3.13.0
+  - svt-av1=1.8.0
+  - tbb=2022.1.0
   - tensorboard=2.13.0
   - tensorboard-data-server=0.7.0
   - tensorflow=2.13.1
   - tensorflow-base=2.13.1
   - tensorflow-estimator=2.13.1
-  - termcolor=2.4.0
+  - termcolor=3.1.0
+  - terminado=0.18.1
+  - threadpoolctl=3.6.0
+  - tinycss2=1.4.0
   - tk=8.6.13
+  - tomli=2.2.1
+  - tornado=6.5.1
+  - tqdm=4.67.1
+  - traitlets=5.14.3
+  - types-python-dateutil=2.9.0.20250708
+  - typing-extensions=4.5.0
   - typing_extensions=4.5.0
-  - urllib3=2.2.3
-  - werkzeug=3.0.6
+  - typing_utils=0.1.0
+  - tzdata=2025b
+  - unicodedata2=16.0.0
+  - uri-template=1.3.0
+  - urllib3=2.5.0
+  - wcwidth=0.2.13
+  - webcolors=24.11.1
+  - webencodings=0.5.1
+  - websocket-client=1.8.0
+  - werkzeug=3.1.3
   - wheel=0.45.1
-  - wrapt=1.16.0
+  - wrapt=1.17.2
+  - x264=1!164.3095
+  - x265=3.5
+  - xorg-libxau=1.0.12
+  - xorg-libxdmcp=1.1.5
   - xz=5.8.1
   - xz-gpl-tools=5.8.1
   - xz-tools=5.8.1
-  - yarl=1.9.4
+  - yaml=0.2.5
+  - yarl=1.20.1
+  - zeromq=4.3.5
+  - zipp=3.23.0
   - zlib=1.3.1
-  - zstandard=0.19.0
+  - zstandard=0.23.0
   - zstd=1.5.7
   - pip:
-      - appnope==0.1.4
-      - attrs==25.3.0
-      - audioread==3.0.1
       - backcall==0.2.0
-      - certifi==2025.7.14
-      - cffi==1.17.1
-      - charset-normalizer==3.4.2
-      - contourpy==1.1.1
-      - cycler==0.12.1
-      - decorator==5.2.1
-      - fonttools==4.57.0
-      - importlib-resources==6.4.5
-      - inflate64==1.0.0
+      - inflate64==1.0.3
       - ipython==7.34.0
       - jams==0.3.5
-      - jedi==0.19.2
-      - joblib==1.4.2
-      - jsonschema==4.23.0
-      - jsonschema-specifications==2023.12.1
-      - kiwisolver==1.4.7
-      - lazy-loader==0.4
-      - librosa==0.11.0
-      - llvmlite==0.41.1
-      - matplotlib==3.7.1
-      - matplotlib-inline==0.1.7
       - mir-eval==0.8.2
-      - msgpack==1.1.1
       - multivolumefile==0.2.3
-      - numba==0.58.1
-      - pandas==1.5.3
-      - parso==0.8.4
-      - pexpect==4.9.0
-      - pickleshare==0.7.5
-      - pillow==10.4.0
-      - pip==25.0.1
-      - pkgutil-resolve-name==1.3.10
-      - platformdirs==4.3.6
-      - pooch==1.8.2
-      - prompt-toolkit==3.0.51
-      - psutil==7.0.0
-      - ptyprocess==0.7.0
-      - py7zr==0.22.0
-      - pybcj==1.0.2
+      - py7zr==1.0.0
+      - pybcj==1.0.6
       - pycryptodomex==3.23.0
-      - pygments==2.19.2
-      - pyparsing==3.1.4
-      - pyppmd==1.1.0
-      - python-dateutil==2.9.0.post0
-      - pytz==2025.2
-      - pyzstd==0.17.0
-      - referencing==0.35.1
-      - requests==2.32.4
-      - rpds-py==0.20.1
-      - scikit-learn==1.2.2
-      - scipy==1.10.1
-      - six==1.17.0
+      - pyppmd==1.2.0
+      - pyzstd==0.16.2
       - sortedcontainers==2.4.0
       - soundata==1.0.1
-      - soundfile==0.13.1
-      - soxr==0.3.7
       - texttable==1.7.0
-      - threadpoolctl==3.5.0
-      - tqdm==4.67.1
-      - traitlets==5.14.3
-      - typing-extensions==4.13.2
-      - tzdata==2025.2
-      - wcwidth==0.2.13
-      - zipp==3.20.2

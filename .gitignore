@@ -1,0 +1,2 @@
+# Ignoriert den gesamten data Ordner im Repo, damit die ca. 8000 Dateien nicht ins Repo hochgeladen werden
+data/

@@ -1,0 +1,11 @@
+# tensorflow seperat über conda-forge installieren
+# tensorflow==2.13.1       # 2.18.0 nicht verfügbar
+scikit-learn==1.2.2
+librosa==0.11.0
+numpy==1.24.4            # 2.0.2 nicht verfügbar
+pandas==1.5.3            # 2.2.2 nicht verfügbar
+tqdm==4.67.1
+ipython==7.34.0
+matplotlib==3.7.1        # 3.10.0 nicht verfügbar
+soundfile==0.13.1
+soundata==1.0.1

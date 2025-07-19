@@ -3,3 +3,6 @@ data/
 
 # Verzeichnismetadaten File (macOS intern -> nicht im Repo benötigt
 .DS_Store
+
+# .p Dateien sind zu groß und sollen ignoriert werden
+*.p

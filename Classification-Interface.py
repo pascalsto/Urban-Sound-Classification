@@ -6,19 +6,21 @@ import numpy as np
 import librosa
 from tensorflow.keras.models import load_model
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QFileDialog)
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 # Zahlen zu Klassen zuordnen und andersrum
 label_to_int = {
-    'air_conditioner': 0, 
-    'car_horn': 1, 
-    'children_playing': 2, 
-    'dog_park': 3, 
-    'drilling': 4, 
-    'engine_idling': 5, 
-    'gun_shot': 6, 
-    'jackhammer': 7, 
-    'siren': 8, 
-    'street_music': 9
+    'Air Conditioner': 0, 
+    'Car Horn': 1, 
+    'Children Playing': 2, 
+    'Dog Park': 3, 
+    'Drilling': 4, 
+    'Engine Idling': 5, 
+    'Gun Shot': 6, 
+    'Jackhammer': 7, 
+    'Siren': 8, 
+    'Street Music': 9
 }
 int_to_label = {v: k for k, v in label_to_int.items()}  # keys und values tauschen
 
@@ -40,7 +42,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Classification Interface')
-        self.setFixedSize(800, 400)
+        self.setFixedSize(800, 800)
         
         self.model = load_model('best_model_trained.hdf5')  # Modell laden
         
@@ -48,20 +50,38 @@ class MainWindow(QMainWindow):
         central = QWidget()
         self.setCentralWidget(central)
         vbox = QVBoxLayout(central)
-        hbox = QHBoxLayout()
+        
+        # Buttons
+        hbox_buttons = QHBoxLayout()
         self.button_record = QPushButton('Aufnehmen')
         self.button_import = QPushButton('Importieren')
-        hbox.addWidget(self.button_record)
-        hbox.addWidget(self.button_import)
-        vbox.addLayout(hbox)
+        self.button_play = QPushButton('Abspielen')
+        hbox_buttons.addWidget(self.button_record)
+        hbox_buttons.addWidget(self.button_import)
+        hbox_buttons.addWidget(self.button_play)
+        vbox.addLayout(hbox_buttons)
         
+        # Labels
+        hbox_labels = QHBoxLayout()
         self.label_result = QLabel('Ergebnis: ')
-        vbox.addWidget(self.label_result)
         self.label_status = QLabel('Status: Bereit')
-        vbox.addWidget(self.label_status)
+        hbox_labels.addWidget(self.label_result, stretch=1)
+        hbox_labels.addWidget(self.label_status, stretch=1)
+        vbox.addLayout(hbox_labels)
         
+        # Plots
+        self.figure = Figure(figsize=(5, 4))
+        self.canvas = FigureCanvas(self.figure)
+        vbox.addWidget(self.canvas, stretch=1)
+        
+        # Verbindung zwischen Knopf und Funktion
         self.button_record.clicked.connect(self.record_function)
         self.button_import.clicked.connect(self.import_function)
+        self.button_play.clicked.connect(self.play_function)
+        
+        # Platzhalter für letzte Audio
+        self.last_audio = None
+        self.last_sr = None
         
     # nimmt path zur wave file, erstellt mel_spec und macht predict und gibt label aus
     def predict_from_wav(self, path):
@@ -71,6 +91,19 @@ class MainWindow(QMainWindow):
         y = int_to_label[y]
         return y
     
+    def plots(self, y, sr):
+        self.figure.clear()
+        ax1 = self.figure.add_subplot(2, 1, 1)
+        ax1.plot(np.linspace(0, len(y)/sr, len(y)), y)
+        
+        ax2 = self.figure.add_subplot(2, 1, 2)
+        mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
+        img = ax2.imshow(mel_spec, aspect='auto', origin='lower')
+        ax2.set_xlabel('Zeit [s]')
+        self.figure.colorbar(img, ax=ax2)
+        self.figure.tight_layout()
+        self.canvas.draw()
+    
     def import_function(self):
         path, _ = QFileDialog.getOpenFileName(self, 'Wähle eine WAV-Datei', filter='WAV Files (*.wav)')
         if not path:
@@ -78,6 +111,10 @@ class MainWindow(QMainWindow):
         self.label_status.setText('Status: Klassifiziere...')
         label = self.predict_from_wav(path)
         self.label_result.setText(f'Ergebnis: {label}')
+        y, sr = soundfile.read(path)    # Fürs Plotten zwischenspeichern
+        self.last_audio = y
+        self.last_sr = sr
+        self.plots(y.flatten(), sr)
         self.label_status.setText('Status: Fertig')
         
     def record_function(self):
@@ -86,11 +123,23 @@ class MainWindow(QMainWindow):
         sr = 22050
         audio = sounddevice.rec(int(duration * sr), samplerate=sr, channels=1)
         sounddevice.wait()  # warten, bist Aufnahme abgeschlossen wurde
-        temp = 'recorded.wav'
-        soundfile.write(temp, audio, sr)
+        y = audio.flatten()     # macht aus 2D array (n, 1) ein 1D array (n,)
+        self.last_audio = y
+        self.last_sr = sr
+        soundfile.write('recorded.wav', audio, sr)
         self.label_status.setText('Status: Klassifiziere Aufnahme...')
-        label = self.predict_from_wav(temp)
+        label = self.predict_from_wav('recorded.wav')
+        self.plots(y, sr)
         self.label_result.setText(f'Ergebnis: {label}')
+        self.label_status.setText('Status: Fertig')
+        
+    def play_function(self):
+        if self.last_audio is None:
+            self.label_status.setText('Status: Keine Audio')
+            return
+        sounddevice.play(self.last_audio, samplerate=self.last_sr)
+        self.label_status.setText('Status: Läuft...')
+        sounddevice.wait()
         self.label_status.setText('Status: Fertig')
         
 if __name__ == '__main__':

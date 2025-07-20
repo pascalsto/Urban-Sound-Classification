@@ -34,8 +34,7 @@ def wav_to_melspec(wav_path, duration=2.97, sr=22050, n_mels=128):
     else:
         y = y[:length_soll] # wenn array zu lang ist -> zugeschnitten (hinten)
     mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=n_mels)
-    ps = librosa.power_to_db(mel_spec, ref=np.max)  # Umwandlung von Leistungsskala in dB Skala
-    return ps
+    return mel_spec
 
 # Hauptfenster
 class MainWindow(QMainWindow):

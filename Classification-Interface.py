@@ -55,9 +55,11 @@ class MainWindow(QMainWindow):
         self.button_record = QPushButton('Aufnehmen')
         self.button_import = QPushButton('Importieren')
         self.button_play = QPushButton('Abspielen')
+        self.button_classify = QPushButton('Klassifizieren')
         hbox_buttons.addWidget(self.button_record)
         hbox_buttons.addWidget(self.button_import)
         hbox_buttons.addWidget(self.button_play)
+        hbox_buttons.addWidget(self.button_classify)
         vbox.addLayout(hbox_buttons)
         
         # Labels
@@ -77,10 +79,12 @@ class MainWindow(QMainWindow):
         self.button_record.clicked.connect(self.record_function)
         self.button_import.clicked.connect(self.import_function)
         self.button_play.clicked.connect(self.play_function)
+        self.button_classify.clicked.connect(self.classify_function)
         
         # Platzhalter für letzte Audio
         self.last_audio = None
         self.last_sr = None
+        self.last_path = None
         
     # nimmt path zur wave file, erstellt mel_spec und macht predict und gibt label aus
     def predict_from_wav(self, path):
@@ -107,14 +111,12 @@ class MainWindow(QMainWindow):
         path, _ = QFileDialog.getOpenFileName(self, 'Wähle eine WAV-Datei', filter='WAV Files (*.wav)')
         if not path:
             return
-        self.label_status.setText('Status: Klassifiziere...')
-        label = self.predict_from_wav(path)
-        self.label_result.setText(f'Ergebnis: {label}')
         y, sr = soundfile.read(path)    # Fürs Plotten zwischenspeichern
-        self.last_audio = y
+        self.last_audio = y.flatten()
         self.last_sr = sr
+        self.last_path = path
         self.plots(y.flatten(), sr)
-        self.label_status.setText('Status: Fertig')
+        self.label_status.setText('Status: Datei geladen')
         
     def record_function(self):
         self.label_status.setText('Status: Aufnahme...')
@@ -123,12 +125,19 @@ class MainWindow(QMainWindow):
         audio = sounddevice.rec(int(duration * sr), samplerate=sr, channels=1)
         sounddevice.wait()  # warten, bist Aufnahme abgeschlossen wurde
         y = audio.flatten()     # macht aus 2D array (n, 1) ein 1D array (n,)
+        soundfile.write('recorded.wav', audio, sr)
         self.last_audio = y
         self.last_sr = sr
-        soundfile.write('recorded.wav', audio, sr)
-        self.label_status.setText('Status: Klassifiziere Aufnahme...')
-        label = self.predict_from_wav('recorded.wav')
+        self.last_path = 'recorded.wav'
+        self.label_status.setText('Status: Aufnahme fertig')
         self.plots(y, sr)
+        
+    def classify_function(self):
+        if self.last_path is None:
+            self.label_status.setText('Status: Keine Audio!')
+            return
+        self.label_status.setText('Status: Klassifiziere...')
+        label = self.predict_from_wav(self.last_path)
         self.label_result.setText(f'Ergebnis: {label}')
         self.label_status.setText('Status: Fertig')
         

@@ -22,7 +22,7 @@ label_to_int = {
     'Siren': 8, 
     'Street Music': 9
 }
-int_to_label = {v: k for k, v in label_to_int.items()}  # keys und values tauschen
+int_to_label = {v: k for k, v in label_to_int.items()}  # keys und values tauschen -> aus Original-Notebook entnommen
 
 # Für die Klassifikation wird Mel-Spec gebraucht
 # -> Umwandlung von wave file in mel-spec nötig
@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle('Classification Interface')
         self.setFixedSize(800, 800)
         
-        self.model = load_model('best_model_trained.hdf5')  # Modell laden
+        self.model = load_model('best_model_trained_50epochs-v1.hdf5')  # Modell laden
         
         # Layout
         central = QWidget()
@@ -98,12 +98,17 @@ class MainWindow(QMainWindow):
         self.figure.clear()
         ax1 = self.figure.add_subplot(2, 1, 1)
         ax1.plot(np.linspace(0, len(y)/sr, len(y)), y)
+        ax1.set_ylabel('Amplitude')
         
         ax2 = self.figure.add_subplot(2, 1, 2)
-        mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128)
-        img = ax2.imshow(mel_spec, aspect='auto', origin='lower')
+        mel_spec = librosa.feature.melspectrogram(y=y, sr=sr, n_mels=128, fmax=sr/2)
+        # img = ax2.imshow(mel_spec, aspect='auto', origin='lower')
+        img = librosa.display.specshow(mel_spec, sr=sr, x_axis='time', y_axis='mel', ax=ax2)
         ax2.set_xlabel('Zeit [s]')
-        self.figure.colorbar(img, ax=ax2)
+        ax2.set_ylabel('Frequenz [Hz]')
+        cbar = self.figure.colorbar(img, ax=ax2)
+        cbar.ax.set_yticklabels([])
+        cbar.ax.set_ylabel('')
         self.figure.tight_layout()
         self.canvas.draw()
     

@@ -1,3 +1,5 @@
+# Mit ChatGPT erstellt!
+
 #!/usr/bin/env bash         -> Sagt dem Betriebssystem, welcher Interpreter das Skript ausführen soll
 set -euo pipefail       # Verhindert, dass ein späterer Teil des Skripts weiterläuft, obwohl zuvor etwas schiefgegangen ist
 

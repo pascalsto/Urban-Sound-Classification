@@ -41,7 +41,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle('Classification Interface')
-        self.setFixedSize(800, 800)
+        self.setFixedSize(800, 800)                 # Fenstergröße festlegen
         
         self.model = load_model('best_model_trained_50epochs-v1.hdf5')  # Modell laden
         
@@ -155,7 +155,7 @@ class MainWindow(QMainWindow):
         sounddevice.wait()
         self.label_status.setText('Status: Fertig')
         
-if __name__ == '__main__':
+if __name__ == '__main__':          # wird nur ausgeführt, wenn .py file direkt ausgeführt wird
     app = QApplication(sys.argv)
     win = MainWindow()
     win.show()

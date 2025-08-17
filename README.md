@@ -8,10 +8,10 @@ git clone https://github.com/pascalsto/Urban-Sound-Classification
 
 ## UrbanSound8K-Datensatz mit bash runterladen
 
-chmod +x download_data.sh
+chmod +x download_data.sh<br>
 bash download_data.sh
 
 ## Datensätze für Datenerweiterung
 
-[HornBase - A Car Horns Dataset](https://data.mendeley.com/datasets/y5stjsnp8s/2)
+[HornBase - A Car Horns Dataset](https://data.mendeley.com/datasets/y5stjsnp8s/2)<br>
 [Gunshot audio dataset](https://www.kaggle.com/datasets/emrahaydemr/gunshot-audio-dataset)

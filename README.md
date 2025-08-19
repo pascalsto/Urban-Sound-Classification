@@ -15,3 +15,10 @@ bash download_data.sh
 
 [HornBase - A Car Horns Dataset](https://data.mendeley.com/datasets/y5stjsnp8s/2)<br>
 [Gunshot audio dataset](https://www.kaggle.com/datasets/emrahaydemr/gunshot-audio-dataset)
+
+## Allgemeine Infos
+
+- Kaggle-Classification.ipynb ist das Original-Notebook von Kaggle
+- Classification.ipynb ist mein bearbeitetes Notebook
+- Classification-Interface.py ist das Skript, womit das Modell mit eigenen Tonaufnahmen getestet werden kann
+- für das Interface wurde das Modell best_model_trained_50epochs-v1.hdf5 verwendet

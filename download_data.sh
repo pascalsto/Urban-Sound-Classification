@@ -1,4 +1,7 @@
 # Mit ChatGPT erstellt!
+# Prompt: 
+# Bitte schreibe mir ein Bash-Skript, das den UrbanSound8K-Datensatz mit soundata runterlädt, 
+# in einen Zielordner entspackt und das Archiv löscht
 
 #!/usr/bin/env bash         -> Sagt dem Betriebssystem, welcher Interpreter das Skript ausführen soll
 set -euo pipefail       # Verhindert, dass ein späterer Teil des Skripts weiterläuft, obwohl zuvor etwas schiefgegangen ist

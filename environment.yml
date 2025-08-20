@@ -1,6 +1,7 @@
 name: urban-sound-py310
 channels:
   - defaults
+  - conda-forge
 dependencies:
   - pysoundfile=0.13.1
   - python=3.10.18

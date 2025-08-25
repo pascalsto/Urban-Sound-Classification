@@ -24,3 +24,4 @@ bash download_data.sh
 - für das Interface wurde das Modell best_model_trained_50epochs-v1.hdf5 verwendet
 - die requirements.txt Datei enthält wichtigsten Pakete, welche für das Laufen des Codes benötigt werden
 - recorded.wav ist die selbstaufgenommene Tonspur aus dem Klassifikations-Interface
+- data, .DS_Store und *.p in .gitignore geschrieben, damit die Daten (über 8 Gb) nicht ins Repository hochgeladen werden

@@ -22,3 +22,5 @@ bash download_data.sh
 - Classification.ipynb ist mein bearbeitetes Notebook
 - Classification-Interface.py ist das Skript, womit das Modell mit eigenen Tonaufnahmen getestet werden kann
 - für das Interface wurde das Modell best_model_trained_50epochs-v1.hdf5 verwendet
+- die requirements.txt Datei enthält wichtigsten Pakete, welche für das Laufen des Codes benötigt werden
+- recorded.wav ist die selbstaufgenommene Tonspur aus dem Klassifikations-Interface

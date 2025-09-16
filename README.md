@@ -6,6 +6,11 @@ In diesem Projekt wird ein Convolutional Neural Network (CNN) auf Basis von [Min
 
 git clone https://github.com/pascalsto/Urban-Sound-Classification
 
+## Erstellen eines Environments mit allen benötigten Paketen (conda benötigt)
+
+conda env create -f environment.yml
+conda activate urban-sound-py310
+
 ## UrbanSound8K-Datensatz mit bash runterladen
 
 chmod +x download_data.sh<br>
